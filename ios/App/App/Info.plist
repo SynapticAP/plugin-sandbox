@@ -18,10 +18,39 @@
 	<string>APPL</string>
 	<key>CFBundleShortVersionString</key>
 	<string>$(MARKETING_VERSION)</string>
+	<key>CFBundleURLTypes</key>
+	<array>
+        <dict>
+            <key>NSCameraUsageDescription</key>
+            <string>To be able to scan barcodes</string>
+        </dict>
+		<dict>
+			<key>CFBundleURLSchemes</key>
+			<array>
+				<string>com.youreka.mobile</string>
+			</array>
+		</dict>
+		<dict>
+			<key>CFBundleTypeRole</key>
+			<string>Editor</string>
+			<key>CFBundleURLSchemes</key>
+			<array>
+				<string>yourekaapp</string>
+			</array>
+			<key>CFBundleURLName</key>
+			<string>com.youreka.mobile</string>
+		</dict>
+	</array>
 	<key>CFBundleVersion</key>
 	<string>$(CURRENT_PROJECT_VERSION)</string>
 	<key>LSRequiresIPhoneOS</key>
 	<true/>
+	<key>NSCameraUsageDescription</key>
+	<string>To be able to take photos to add to Forms or scan barcodes for expedited data entry</string>
+	<key>NSPhotoLibraryAddUsageDescription</key>
+	<string>To be able add photos to the photo library from a Form</string>
+	<key>NSPhotoLibraryUsageDescription</key>
+	<string>To be able to select photos from photo library and add them to a Form</string>
 	<key>UILaunchStoryboardName</key>
 	<string>LaunchScreen</string>
 	<key>UIMainStoryboardFile</key>
