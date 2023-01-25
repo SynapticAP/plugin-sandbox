@@ -6,12 +6,11 @@ import {
   IonList,
   IonListHeader,
   IonMenu,
-  IonMenuToggle,
-  IonNote,
+  IonMenuToggle
 } from '@ionic/react';
 
 import { useLocation } from 'react-router-dom';
-import { camera, archiveOutline, archiveSharp, bookmarkOutline, heartOutline, heartSharp, mailOutline, mailSharp, paperPlaneOutline, paperPlaneSharp, trashOutline, trashSharp, warningOutline, warningSharp } from 'ionicons/icons';
+import { camera,  bookmarkOutline, warning } from 'ionicons/icons';
 import './Menu.css';
 
 interface AppPage {
@@ -21,46 +20,16 @@ interface AppPage {
   title: string;
 }
 
-const appPages: AppPage[] = [
+const capacitorPages: AppPage[] = [
   {
     title: 'Camera',
     url: '/page/Camera',
     iosIcon: camera,
     mdIcon: camera
-  },
-  {
-    title: 'Outbox',
-    url: '/page/Outbox',
-    iosIcon: paperPlaneOutline,
-    mdIcon: paperPlaneSharp
-  },
-  {
-    title: 'Favorites',
-    url: '/page/Favorites',
-    iosIcon: heartOutline,
-    mdIcon: heartSharp
-  },
-  {
-    title: 'Archived',
-    url: '/page/Archived',
-    iosIcon: archiveOutline,
-    mdIcon: archiveSharp
-  },
-  {
-    title: 'Trash',
-    url: '/page/Trash',
-    iosIcon: trashOutline,
-    mdIcon: trashSharp
-  },
-  {
-    title: 'Spam',
-    url: '/page/Spam',
-    iosIcon: warningOutline,
-    mdIcon: warningSharp
   }
 ];
 
-const labels = ['Family', 'Friends', 'Notes', 'Work', 'Travel', 'Reminders'];
+const cordovaPages: AppPage[] = [];
 
 const Menu: React.FC = () => {
   const location = useLocation();
@@ -68,9 +37,19 @@ const Menu: React.FC = () => {
   return (
     <IonMenu contentId="main" type="overlay">
       <IonContent>
+      <IonList id="inbox-list">
+          <IonListHeader>Current Issue</IonListHeader>
+              <IonMenuToggle autoHide={false}>
+                <IonItem className={location.pathname === 'page/CurrentIssue' ? 'selected' : ''} routerLink={'/page/CurrentIssue'} routerDirection="none" lines="none" detail={false}>
+                  <IonIcon slot="start" ios={warning} md={warning} />
+                  <IonLabel>{'Current Issue'}</IonLabel>
+                </IonItem>
+              </IonMenuToggle>
+        </IonList>
+
         <IonList id="inbox-list">
           <IonListHeader>Capacitor Plugins</IonListHeader>
-          {appPages.map((appPage, index) => {
+          {capacitorPages.map((appPage, index) => {
             return (
               <IonMenuToggle key={index} autoHide={false}>
                 <IonItem className={location.pathname === appPage.url ? 'selected' : ''} routerLink={appPage.url} routerDirection="none" lines="none" detail={false}>
@@ -84,11 +63,13 @@ const Menu: React.FC = () => {
 
         <IonList id="labels-list">
         <IonListHeader>Cordova Plugins</IonListHeader>
-          {labels.map((label, index) => (
-            <IonItem lines="none" key={index}>
-              <IonIcon slot="start" icon={bookmarkOutline} />
-              <IonLabel>{label}</IonLabel>
+          {cordovaPages.map((appPage, index) => (
+            <IonMenuToggle key={index} autoHide={false}>
+            <IonItem className={location.pathname === appPage.url ? 'selected' : ''} routerLink={appPage.url} routerDirection="none" lines="none" detail={false}>
+              <IonIcon slot="start" ios={appPage.iosIcon} md={appPage.mdIcon} />
+              <IonLabel>{appPage.title}</IonLabel>
             </IonItem>
+          </IonMenuToggle>
           ))}
         </IonList>
       </IonContent>
