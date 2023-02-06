@@ -85,9 +85,8 @@ const CameraPluginPage: React.FC = () => {
                 <IonItemDivider color={photosPermission.color}>
                     <IonLabel>Photos Permission: {photosPermission.grantedPermissionMessage} </IonLabel>
                 </IonItemDivider>
-
-
             </IonList>
+
             <IonList>
                 <IonListHeader>
                     <IonLabel>Request Camera Plugin Permissions</IonLabel>
