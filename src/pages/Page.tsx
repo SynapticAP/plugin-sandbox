@@ -2,6 +2,7 @@ import { IonButtons, IonContent, IonHeader, IonMenuButton, IonPage, IonTitle, Io
 import { useParams } from 'react-router';
 import { CameraPluginPage } from './capacitorPluginPages/CameraPluginPage/CameraPluginPage';
 import { CurrentIssuePage } from './currentIssuePage/CurrentIssuePage';
+import { FingerprintPluginPage } from './ionicPluginPages/fingerprintPluginPage/FingerprintPluginPage';
 import './Page.css';
 
 const Page: React.FC = () => {
@@ -11,11 +12,16 @@ const Page: React.FC = () => {
   const getContent = (): JSX.Element => {
     let contentComponent = <></>;
     switch (name) {
+      case 'CurrentIssue':
+        contentComponent= <CurrentIssuePage />
+        break;
+      // Capacitor Plugins
       case 'Camera':
         contentComponent = <CameraPluginPage />;
         break;
-      case 'CurrentIssue':
-        contentComponent= <CurrentIssuePage />
+      // Ionic Plugins
+      case 'Fingerprint':
+        contentComponent = <FingerprintPluginPage />;
         break;
     }
     return contentComponent;

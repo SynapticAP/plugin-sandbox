@@ -10,7 +10,7 @@ import {
 } from '@ionic/react';
 
 import { useLocation } from 'react-router-dom';
-import { camera,  bookmarkOutline, warning } from 'ionicons/icons';
+import { camera, fingerPrint, warning } from 'ionicons/icons';
 import './Menu.css';
 
 interface AppPage {
@@ -30,6 +30,15 @@ const capacitorPages: AppPage[] = [
 ];
 
 const cordovaPages: AppPage[] = [];
+
+const ionicPages:  AppPage[] = [
+  {
+    title: 'Fingerprint',
+    url: '/page/Fingerprint',
+    iosIcon: fingerPrint,
+    mdIcon: fingerPrint
+  }
+];
 
 const Menu: React.FC = () => {
   const location = useLocation();
@@ -62,15 +71,27 @@ const Menu: React.FC = () => {
         </IonList>
 
         <IonList id="labels-list">
-        <IonListHeader>Cordova Plugins</IonListHeader>
-          {cordovaPages.map((appPage, index) => (
-            <IonMenuToggle key={index} autoHide={false}>
-            <IonItem className={location.pathname === appPage.url ? 'selected' : ''} routerLink={appPage.url} routerDirection="none" lines="none" detail={false}>
-              <IonIcon slot="start" ios={appPage.iosIcon} md={appPage.mdIcon} />
-              <IonLabel>{appPage.title}</IonLabel>
-            </IonItem>
-          </IonMenuToggle>
-          ))}
+          <IonListHeader>Cordova Plugins</IonListHeader>
+            {cordovaPages.map((appPage, index) => (
+              <IonMenuToggle key={index} autoHide={false}>
+              <IonItem className={location.pathname === appPage.url ? 'selected' : ''} routerLink={appPage.url} routerDirection="none" lines="none" detail={false}>
+                <IonIcon slot="start" ios={appPage.iosIcon} md={appPage.mdIcon} />
+                <IonLabel>{appPage.title}</IonLabel>
+              </IonItem>
+            </IonMenuToggle>
+            ))}
+        </IonList>
+
+        <IonList id="labels-list">
+          <IonListHeader>Ionic Plugins</IonListHeader>
+            {ionicPages.map((appPage, index) => (
+              <IonMenuToggle key={index} autoHide={false}>
+              <IonItem className={location.pathname === appPage.url ? 'selected' : ''} routerLink={appPage.url} routerDirection="none" lines="none" detail={false}>
+                <IonIcon slot="start" ios={appPage.iosIcon} md={appPage.mdIcon} />
+                <IonLabel>{appPage.title}</IonLabel>
+              </IonItem>
+            </IonMenuToggle>
+            ))}
         </IonList>
       </IonContent>
     </IonMenu>
